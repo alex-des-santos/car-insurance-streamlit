@@ -159,23 +159,19 @@ elif page == "Drivers":
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        age_min = int(df['AGE'].dropna().min())
-        age_max = int(df['AGE'].dropna().max())
-        age_range = st.slider(
+        age_options = sorted(df['AGE'].unique())
+        age_selected = st.multiselect(
             "Faixa de Idade",
-            min_value=age_min,
-            max_value=age_max,
-            value=(age_min, age_max)
+            options=age_options,
+            default=age_options
         )
     
     with col2:
-        exp_min = int(df['DRIVING_EXPERIENCE'].dropna().min())
-        exp_max = int(df['DRIVING_EXPERIENCE'].dropna().max())
-        exp_range = st.slider(
+        exp_options = sorted(df['DRIVING_EXPERIENCE'].unique())
+        exp_selected = st.multiselect(
             "Experiência (anos)",
-            min_value=exp_min,
-            max_value=exp_max,
-            value=(exp_min, exp_max)
+            options=exp_options,
+            default=exp_options
         )
     
     with col3:
@@ -188,8 +184,8 @@ elif page == "Drivers":
     
     # Filtrar dados
     df_filtered = df[
-        (df['AGE'] >= age_range[0]) & (df['AGE'] <= age_range[1]) &
-        (df['DRIVING_EXPERIENCE'] >= exp_range[0]) & (df['DRIVING_EXPERIENCE'] <= exp_range[1]) &
+        (df['AGE'].isin(age_selected)) &
+        (df['DRIVING_EXPERIENCE'].isin(exp_selected)) &
         (df['INCOME'].isin(income_selected))
     ]
     

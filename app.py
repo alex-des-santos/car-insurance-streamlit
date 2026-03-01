@@ -159,19 +159,23 @@ elif page == "Drivers":
     col1, col2, col3 = st.columns(3)
     
     with col1:
+        age_min = int(df['AGE'].dropna().min())
+        age_max = int(df['AGE'].dropna().max())
         age_range = st.slider(
             "Faixa de Idade",
-            min_value=int(df['AGE'].min()),
-            max_value=int(df['AGE'].max()),
-            value=(int(df['AGE'].min()), int(df['AGE'].max()))
+            min_value=age_min,
+            max_value=age_max,
+            value=(age_min, age_max)
         )
     
     with col2:
+        exp_min = int(df['DRIVING_EXPERIENCE'].dropna().min())
+        exp_max = int(df['DRIVING_EXPERIENCE'].dropna().max())
         exp_range = st.slider(
             "Experiência (anos)",
-            min_value=int(df['DRIVING_EXPERIENCE'].min()),
-            max_value=int(df['DRIVING_EXPERIENCE'].max()),
-            value=(int(df['DRIVING_EXPERIENCE'].min()), int(df['DRIVING_EXPERIENCE'].max()))
+            min_value=exp_min,
+            max_value=exp_max,
+            value=(exp_min, exp_max)
         )
     
     with col3:

@@ -1,5 +1,7 @@
 # Dashboard de Análise de Sinistros de Seguros - Streamlit
 
+https://car-insurance-app-case-study.streamlit.app/
+
 Dashboard interativo para análise de dados de sinistros de seguros de automóveis, desenvolvido com Streamlit.
 
 ## Visão Geral
